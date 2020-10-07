@@ -15,6 +15,11 @@ const io = socketIO(server);
 io.on("connection", (socket) => {
   console.log("new user connected!!");
 
+  // 파라미터 뒤에 , callback을 넣어서 error handling도 가능
+  socket.on("join", ({ name, room }) => {
+    console.log(name, room);
+  });
+
   // 해당 유저(socket)이 연결을 해제함
   socket.on("disconnect", () => {
     console.log("user left!!");

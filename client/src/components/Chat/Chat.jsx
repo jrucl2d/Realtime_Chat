@@ -18,7 +18,12 @@ function Chat({ location }) {
     setName(name);
     setRoom(room);
 
-    socket.emit("join", { name, room });
+    socket.emit("join", { name, room }, () => {});
+
+    return () => {
+      socket.emit("disconnect"); // disconnect 이벤트 emit하고
+      socket.off(); // socket 자체를 닫아버림
+    };
   }, [SERVERLOC, location.search]);
   return (
     <div>
