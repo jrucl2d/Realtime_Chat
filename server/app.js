@@ -31,6 +31,12 @@ io.on("connection", (socket) => {
     });
 
     socket.join(user.room); // socket을 socket.io의 'room'에 join 시킴
+
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
+
     callback(); // error가 없음
   });
 
@@ -43,6 +49,14 @@ io.on("connection", (socket) => {
 
   // 해당 유저(socket)이 연결을 해제함
   socket.on("disconnect", () => {
-    console.log("user left!!");
+    const user = removeUser(socket.id);
+    io.to(user.room).emit("message", {
+      user: "admin",
+      text: `${user.name} has left!`,
+    });
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
   });
 });
