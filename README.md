@@ -14,11 +14,11 @@ Realtime Chat web application(ReactJS, NodeJS, socket.io)
 
 ### - Join page
 
-![JoinPage](./img/JoinPage.png)
+![JoinPage](./img/JoinPage.PNG)
 
 ### - Chatting Page
 
-![ChattingPage](./img/ChattingPage.png)
+![ChattingPage](./img/ChattingPage.PNG)
 
 ### - Chatting & Scrolling
 
